@@ -1,0 +1,1 @@
+This repository contains interview preparation material and practice
