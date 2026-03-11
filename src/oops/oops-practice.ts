@@ -4,8 +4,8 @@ export {};
  * Account Types
  */
 enum AccountType {
-  Savings = "Savings",
-  Current = "Current"
+  Savings = 'Savings',
+  Current = 'Current'
 }
 
 /**
@@ -25,7 +25,7 @@ abstract class Account {
 
   constructor(owner: string, amount: number, type: AccountType) {
     if (amount < 0) {
-      throw new Error("Initial account balance cannot be negative");
+      throw new Error('Initial account balance cannot be negative');
     }
 
     this.owner = owner;
@@ -43,7 +43,7 @@ abstract class Account {
    */
   public deposit(amount: number): void {
     if (amount <= 0) {
-      throw new Error("Deposit amount must be greater than 0");
+      throw new Error('Deposit amount must be greater than 0');
     }
 
     this._balance += amount;
@@ -54,11 +54,11 @@ abstract class Account {
    */
   public withdraw(amount: number): void {
     if (amount <= 0) {
-      throw new Error("Withdraw amount must be greater than 0");
+      throw new Error('Withdraw amount must be greater than 0');
     }
 
     if (amount > this._balance) {
-      throw new Error("Insufficient account balance");
+      throw new Error('Insufficient account balance');
     }
 
     this._balance -= amount;
@@ -115,11 +115,11 @@ class CurrentAccount extends Account {
 
   override withdraw(amount: number): void {
     if (amount <= 0) {
-      throw new Error("Withdraw amount must be greater than 0");
+      throw new Error('Withdraw amount must be greater than 0');
     }
 
     if (this._balance + CurrentAccount.OVERDRAFT_LIMIT < amount) {
-      throw new Error("Overdraft limit exceeded");
+      throw new Error('Overdraft limit exceeded');
     }
 
     this._balance -= amount;
@@ -164,8 +164,8 @@ class TransactionService {
  */
 const bank = new Bank();
 
-const johnAccount = new SavingsAccount("John Doe", 100);
-const janeAccount = new CurrentAccount("Jane Doe", 50);
+const johnAccount = new SavingsAccount('John Doe', 100);
+const janeAccount = new CurrentAccount('Jane Doe', 50);
 
 console.log(`Interest on John's account: ${johnAccount.calculateInterest()}`);
 console.log(`Interest on Jane's account: ${janeAccount.calculateInterest()}`);
@@ -173,12 +173,12 @@ console.log(`Interest on Jane's account: ${janeAccount.calculateInterest()}`);
 bank.addAccount(johnAccount);
 bank.addAccount(janeAccount);
 
-console.log("\nInitial Balances:");
+console.log('\nInitial Balances:');
 bank.listBalances();
 
 TransactionService.transfer(johnAccount, janeAccount, 10);
 
-console.log("\nBalances After Transfer:");
+console.log('\nBalances After Transfer:');
 bank.listBalances();
 
-console.log("\nTotal Accounts Created:", Account.getTotalAccounts());
+console.log('\nTotal Accounts Created:', Account.getTotalAccounts());

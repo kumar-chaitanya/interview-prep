@@ -5,8 +5,8 @@
  * Used to restrict account types to predefined values.
  */
 enum AccountType {
-  SAVINGS = "SAVINGS",
-  CURRENT = "CURRENT",
+  SAVINGS = 'SAVINGS',
+  CURRENT = 'CURRENT',
 }
 
 /**
@@ -71,7 +71,7 @@ abstract class Account implements BankOperations {
     accountType: AccountType,
     balance = 0
   ) {
-    if (balance < 0) throw new Error("Initial balance cannot be negative");
+    if (balance < 0) throw new Error('Initial balance cannot be negative');
 
     this.username = username;
     this.accountNumber = accountNumber;
@@ -107,7 +107,7 @@ abstract class Account implements BankOperations {
    * Setter with validation
    */
   protected set accountBalance(balance: number) {
-    if (balance < 0) throw new Error("Balance cannot be negative");
+    if (balance < 0) throw new Error('Balance cannot be negative');
     this._accountBalance = balance;
   }
 
@@ -116,7 +116,7 @@ abstract class Account implements BankOperations {
    */
   getMaskedAccountNumber(): string {
     const len = this.accountNumber.length;
-    return "********".concat(this.accountNumber.slice(len - 4));
+    return '********'.concat(this.accountNumber.slice(len - 4));
   }
 
   getCustomerId(): string {
@@ -127,14 +127,14 @@ abstract class Account implements BankOperations {
    * Concrete methods (from interface)
    */
   deposit(amount: number): void {
-    if (amount <= 0) throw new Error("Deposit must be positive");
+    if (amount <= 0) throw new Error('Deposit must be positive');
     this.accountBalance = this.accountBalance + amount;
   }
 
   withdraw(amount: number): void {
-    if (amount <= 0) throw new Error("Withdrawal must be positive");
+    if (amount <= 0) throw new Error('Withdrawal must be positive');
     if (amount > this.accountBalance)
-      throw new Error("Insufficient balance");
+      throw new Error('Insufficient balance');
 
     this.accountBalance = this.accountBalance - amount;
   }
@@ -186,7 +186,7 @@ class CurrentAccount extends Account {
 
   override withdraw(amount: number): void {
     if (amount > this.accountBalance + this.overdraftLimit) {
-      throw new Error("Overdraft limit exceeded");
+      throw new Error('Overdraft limit exceeded');
     }
     this.accountBalance = this.accountBalance - amount;
   }
@@ -231,16 +231,16 @@ function printInterest(account: Account): void {
  */
 
 const savings = new SavingsAccount(
-  "john_doe",
-  "ABC123XYZ789",
-  "1998-09-23",
+  'john_doe',
+  'ABC123XYZ789',
+  '1998-09-23',
   1000
 );
 
 const current = new CurrentAccount(
-  "jane_doe",
-  "XYZ987ABC654",
-  "1995-04-11",
+  'jane_doe',
+  'XYZ987ABC654',
+  '1995-04-11',
   500
 );
 
@@ -251,9 +251,9 @@ repo.add(current);
 const transactionService = new TransactionService(savings);
 transactionService.performDeposit(200);
 
-console.log("Balance:", savings.accountBalance);
+console.log('Balance:', savings.accountBalance);
 
 printInterest(savings);
 printInterest(current);
 
-console.log("Total Accounts:", Account.getTotalAccounts());
+console.log('Total Accounts:', Account.getTotalAccounts());

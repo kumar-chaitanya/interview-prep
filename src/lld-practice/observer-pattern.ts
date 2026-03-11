@@ -19,8 +19,8 @@ class WeatherStation implements Observable {
 
   constructor() {
     this.state = {
-      temperature: "22 °C",
-      humidity: "43%"
+      temperature: '22 °C',
+      humidity: '43%'
     };
   }
 
@@ -49,12 +49,12 @@ class WeatherStation implements Observable {
 
   setTemperature(temperature: string): void {
     this.state.temperature = temperature;
-    this.notify("temperature", temperature);
+    this.notify('temperature', temperature);
   }
 
   setHumidity(humidity: string): void {
     this.state.humidity = humidity;
-    this.notify("humidity", humidity);
+    this.notify('humidity', humidity);
   }
 }
 
@@ -85,11 +85,11 @@ const phone = new Phone();
 
 const weatherStation = new WeatherStation();
 
-weatherStation.add("temperature", tv);
+weatherStation.add('temperature', tv);
 weatherStation.add('humidity', tv);
-weatherStation.add("temperature", phone);
+weatherStation.add('temperature', phone);
 
-weatherStation.setTemperature("25 °C");
-weatherStation.setHumidity("89%");
-weatherStation.setHumidity("92%");
-weatherStation.setTemperature("22 °C");
+weatherStation.setTemperature('25 °C');
+weatherStation.setHumidity('89%');
+weatherStation.setHumidity('92%');
+weatherStation.setTemperature('22 °C');

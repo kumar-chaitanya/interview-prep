@@ -128,7 +128,7 @@ class LoggerRegistry {
    *
    * Example:
    *
-   * "console" → () => new ConsoleLogger()
+   * 'console' → () => new ConsoleLogger()
    */
   private static registry = new Map<string, () => Logger>()
 
@@ -180,7 +180,7 @@ class ConsoleLogger implements Logger {
 /**
  * Self-register logger
  */
-LoggerRegistry.register("console", () => new ConsoleLogger())
+LoggerRegistry.register('console', () => new ConsoleLogger())
 
 
 /**
@@ -196,7 +196,7 @@ class FileLogger implements Logger {
 
 }
 
-LoggerRegistry.register("file", () => new FileLogger())
+LoggerRegistry.register('file', () => new FileLogger())
 
 
 /**
@@ -212,7 +212,7 @@ class DatabaseLogger implements Logger {
 
 }
 
-LoggerRegistry.register("database", () => new DatabaseLogger())
+LoggerRegistry.register('database', () => new DatabaseLogger())
 
 
 /* ---------------------------------------------------- */
@@ -233,7 +233,7 @@ class Application {
   constructor(private logger: Logger) {}
 
   processOrder() {
-    this.logger.log("Order processed")
+    this.logger.log('Order processed')
   }
 
 }
@@ -246,7 +246,7 @@ class Application {
 /**
  * Create logger using registry
  */
-const logger = LoggerRegistry.create("file")
+const logger = LoggerRegistry.create('file')
 
 /**
  * Inject dependency into application
@@ -282,14 +282,14 @@ class SlackLogger implements Logger {
 
 }
 
-LoggerRegistry.register("slack", () => new SlackLogger())
+LoggerRegistry.register('slack', () => new SlackLogger())
 
 
 /**
  * Now the system supports Slack logging
  */
 
-const slackLogger = LoggerRegistry.create("slack")
+const slackLogger = LoggerRegistry.create('slack')
 
 const slackApp = new Application(slackLogger)
 
