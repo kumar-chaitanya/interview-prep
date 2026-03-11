@@ -60,23 +60,13 @@ class WeatherStation implements Observable {
 
 class TV implements Observer {
   update(event: string, data: string): void {
-    if (event === 'temperature') {
-      return console.log(`TV Display → Temperature: ${data}`);
-    }
-    if (event === 'humidity') {
-      return console.log(`TV Display → Humidity: ${data}`);
-    }
+    console.log(`TV Display → ${event}: ${data}`);
   }
 }
 
 class Phone implements Observer {
   update(event: string, data: string): void {
-    if (event === 'temperature') {
-      return console.log(`Phone App → Temperature: ${data}`);
-    }
-    if (event === 'humidity') {
-      return console.log(`Phone App → Humidity: ${data}`);
-    }
+    console.log(`Phone App → ${event}: ${data}`);
   }
 }
 
