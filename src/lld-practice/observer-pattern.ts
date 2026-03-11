@@ -71,7 +71,7 @@ class TV implements Observer {
 
 class Phone implements Observer {
   update(event: string, data: string): void {
-        if (event === 'temperature') {
+    if (event === 'temperature') {
       return console.log(`Phone App → Temperature: ${data}`);
     }
     if (event === 'humidity') {
